@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Weather {
-    public String getWeather(String site) throws IOException {
+class Weather {
+    String getWeather(String site) throws IOException {
         URL url;
         try {
             url = new URL(site);
@@ -32,7 +32,7 @@ public class Weather {
         return weatherHandler(html.toString());
     }
 
-    public String weatherHandler(String text) {
+    String weatherHandler(String text) {
         if (StringUtils.isBlank(text)) {
             return "There is no text";
         }
@@ -58,7 +58,7 @@ public class Weather {
         return "Weather is " + weather + " and temperature is " + temp;
     }
 
-    public String parser(String s) {
+    String parser(String s) {
         String[] data = s.split(":");
         String result;
         try {
