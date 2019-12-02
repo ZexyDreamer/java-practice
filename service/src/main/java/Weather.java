@@ -25,10 +25,10 @@ public class Weather {
         if (in == null){
             return "There is null site";
         }
-        in.close();
         while((input = in.readLine()) != null) {
             html.append(input);
         }
+        in.close();
         return weatherHandler(html.toString());
     }
 
@@ -55,7 +55,7 @@ public class Weather {
         } catch (Exception e) {
             return "There is bad data";
         }
-        return "weather is " + weather + " and temperature is " + temp;
+        return "Weather is " + weather + " and temperature is " + temp;
     }
 
     public String parser(String s) {

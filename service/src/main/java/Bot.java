@@ -35,7 +35,7 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    public String messageParser (String message){
+    public String messageParser (String message) {
         if (message.equals("Weather")) {
             Weather weather = new Weather();
             String city = "Yekaterinburg"; //message.split(" ")[1];
