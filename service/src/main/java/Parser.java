@@ -2,8 +2,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
-public class Parser {
-    public static String[] parser() {
+class Parser {
+    static String[] parser() {
         ClassLoader classLoader = Parser.class.getClassLoader();
         URL resource = classLoader.getResource(".properties");
         if (resource == null) {
