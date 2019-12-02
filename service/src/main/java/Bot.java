@@ -9,6 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class Bot extends TelegramLongPollingBot {
 
@@ -16,9 +17,9 @@ public class Bot extends TelegramLongPollingBot {
     private String appid;
 
     public Bot() {
-        String[] s = Parser.parser();
-        this.token = s[0];
-        this.appid = s[1];
+        Properties properties = Parser.parser();
+        this.token = properties.getProperty("token");
+        this.appid = properties.getProperty("appid");
     }
 
     public void onUpdateReceived(Update update) {
