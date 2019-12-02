@@ -36,20 +36,23 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public String messageParser (String message) {
-        if (message.equals("Weather")) {
-            Weather weather = new Weather();
-            String city = "Yekaterinburg"; //message.split(" ")[1];
-            String appid = "&APPID=" + this.appid;
-            String s = "http://api.openweathermap.org/data/2.5/weather?q=" + city + appid;
-            try {
-                return weather.getWeather(s);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else if (message.equals("Help")) {
-            return "Click the \"Weather\" button and write the city.";
-        } else if (message.equals("/start")) {
-		    return "This bot can tell the weather in your city. Click the \"Weather\" button and write the city.";
+        switch (message) {
+            case "Weather":
+                Weather weather = new Weather();
+                String city = "Yekaterinburg"; //message.split(" ")[1];
+
+                String appid = "&APPID=" + this.appid;
+                String s = "http://api.openweathermap.org/data/2.5/weather?q=" + city + appid;
+                try {
+                    return weather.getWeather(s);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "Help":
+                return "Click the \"Weather\" button and write the city.";
+            case "/start":
+                return "This bot can tell the weather in your city. Click the \"Weather\" button and write the city.";
         }
         return message;
     }
