@@ -1,8 +1,7 @@
 import java.util.Random;
 
 class Game {
-
-    String help = "";
+    
     private String number = "";
     int bulls = 0;
     int cows = 0;

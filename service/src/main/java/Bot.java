@@ -58,7 +58,7 @@ public class Bot extends TelegramLongPollingBot {
         else if (message.equals("Game")) {
             this.gameMode = true;
             this.game = new Game();
-            return "Game is ready, write number. " + this.game.help;
+            return "Game is ready, write number.";
         }
         else if (message.equals("Help")) {
             return "Click the \"Weather\" button and write the city.";
