@@ -1,4 +1,4 @@
-.properties:
+service/src/main/resources/.properties:
 token: telegram-bot token
 appid: appid from openweather.com
 ============================================================================
