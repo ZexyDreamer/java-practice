@@ -1,2 +1,0 @@
-token: telegram-bot token
-appid: appid from openweather.com

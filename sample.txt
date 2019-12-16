@@ -1,0 +1,10 @@
+service/src/main/resources/.properties:
+token: telegram-bot token
+appid: appid from openweather.com
+============================================================================
+Procfile:
+web: java -jar [Name of .jar file].jar
+============================================================================
+system.properties:
+java.runtime.version=1.8
+maven.version=3.6.2
