@@ -65,7 +65,7 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    String messageParser(String message) {
+    public String messageParser(String message) {
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow keyboardRowFirstRow = new KeyboardRow();
         KeyboardRow keyboardRowSecondRow = new KeyboardRow();
