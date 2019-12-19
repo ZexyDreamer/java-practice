@@ -1,3 +1,6 @@
+package Telegram;
+
+import Interfaces.IWeather;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
@@ -6,8 +9,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-class Weather {
-    String getWeather(String site) throws IOException {
+public class Weather implements IWeather {
+    public String getWeather(String site) throws IOException {
         URL url;
         try {
             url = new URL(site);
@@ -32,7 +35,7 @@ class Weather {
         return weatherHandler(html.toString());
     }
 
-    String weatherHandler(String text) {
+    public String weatherHandler(String text) {
         if (StringUtils.isBlank(text)) {
             return "There is no text";
         }
@@ -58,7 +61,7 @@ class Weather {
         return "Weather is " + weather + " and temperature is " + temp;
     }
 
-    String parser(String s) {
+    public String parser(String s) {
         String[] data = s.split(":");
         String result;
         try {

@@ -1,3 +1,4 @@
+import Telegram.Bot;
 import org.junit.Assert;
 import org.junit.Test;
 

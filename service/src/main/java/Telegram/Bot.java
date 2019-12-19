@@ -1,3 +1,5 @@
+package Telegram;
+
 import org.apache.commons.lang3.StringUtils;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -15,6 +17,10 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+import DataBase.Login;
+import Main.Parser;
+
 public class Bot extends TelegramLongPollingBot {
 
     private String token;
@@ -27,7 +33,7 @@ public class Bot extends TelegramLongPollingBot {
     private Boolean gameMode = false;
     private Game game;
 
-    Bot() {
+    public Bot() {
         Properties properties = Parser.parser();
         this.token = properties.getProperty("token");
         this.appid = properties.getProperty("appid");
@@ -57,7 +63,7 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    String messageParser(String message) {
+    public String messageParser(String message) {
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow keyboardRowFirstRow = new KeyboardRow();
         KeyboardRow keyboardRowSecondRow = new KeyboardRow();

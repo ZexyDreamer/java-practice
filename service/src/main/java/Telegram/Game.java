@@ -1,10 +1,15 @@
+package Telegram;
+
+import Interfaces.IGame;
+
 import java.util.Random;
 
-class Game {
+class Game implements IGame {
     
-    private String number = "";
-    int bulls = 0;
-    int cows = 0;
+    private String number;
+    int bulls = IGame.bulls;
+    int cows = IGame.cows;
+
 
     Game() {
         Random random = new Random();
@@ -16,7 +21,7 @@ class Game {
         } while(check(number));
     }
 
-    String Step(String number) {
+    public String Step(String number) {
         this.bulls = 0;
         this.cows = 0;
         char[] n1 = number.toCharArray();
@@ -34,7 +39,7 @@ class Game {
         return "bulls are " + this.bulls + " and cows are " + this.cows;
     }
 
-    String Logic(String number) {
+    public String Logic(String number) {
         if (number.length() != 4) {
             return "Only 4 digit numbers!!!";
         }

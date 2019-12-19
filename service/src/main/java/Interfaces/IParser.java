@@ -2,7 +2,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
-class Parser {
+public interface IParser {
     static Properties parser() {
         ClassLoader classLoader = Parser.class.getClassLoader();
         URL resource = classLoader.getResource(".properties");

@@ -1,13 +1,16 @@
+package DataBase;
+
 import org.telegram.telegrambots.meta.api.objects.Location;
 
 import java.sql.*;
-class Login {
+
+public class Login {
 
     private String username = "root";
     private String password = "root";
     private String connectionURL = "jdbc:mysql://localhost:3306/users";
 
-    void create() {
+    public void create() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection(connectionURL, username, password);
@@ -20,7 +23,7 @@ class Login {
 
     }
 
-    void add(String id, String name, String city) {
+    public void add(String id, String name, String city) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection(connectionURL, username, password);
@@ -35,7 +38,7 @@ class Login {
         }
     }
 
-    void change(Location newLocation, String id) {
+    public void change(Location newLocation, String id) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection(connectionURL, username, password);
@@ -48,7 +51,7 @@ class Login {
         }
     }
 
-    String get(String id) {
+    public String get(String id) {
         String city = "";
         try {
             Class.forName("com.mysql.jdbc.Driver");

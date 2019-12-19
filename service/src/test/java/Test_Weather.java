@@ -1,8 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
+import Telegram.Weather;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 public class Test_Weather {
     @Test
