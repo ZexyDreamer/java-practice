@@ -33,7 +33,7 @@ public class Bot extends TelegramLongPollingBot {
     private Boolean gameMode = false;
     private Game game;
 
-    Bot() throws SQLException {
+    public Bot() throws SQLException {
         Properties properties = Parser.parser();
         this.token = properties.getProperty("token");
         this.appid = properties.getProperty("appid");
