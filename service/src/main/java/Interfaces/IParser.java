@@ -1,3 +1,6 @@
+package Interfaces;
+
+import Main.Parser;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;

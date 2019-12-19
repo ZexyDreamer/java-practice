@@ -1,3 +1,5 @@
+package Interfaces;
+
 public interface IGame {
     String number = "";
     int bulls = 0;
@@ -5,5 +7,4 @@ public interface IGame {
 
     String Step(String number);
     String Logic(String number);
-    Boolean check(String number);
 }
