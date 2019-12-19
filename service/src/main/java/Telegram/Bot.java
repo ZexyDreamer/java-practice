@@ -12,13 +12,14 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-import DataBase.Login;
+import DataBase.Database;
 import Main.Parser;
 
 public class Bot extends TelegramLongPollingBot {
@@ -26,14 +27,13 @@ public class Bot extends TelegramLongPollingBot {
     private String token;
     private String appid;
     private String chat_id;
-    private String nameUser = "";
     private Location location;
     private ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-    private Login login = new Login();
+    private Database database = new Database();
     private Boolean gameMode = false;
     private Game game;
 
-    public Bot() {
+    Bot() throws SQLException {
         Properties properties = Parser.parser();
         this.token = properties.getProperty("token");
         this.appid = properties.getProperty("appid");
@@ -48,12 +48,14 @@ public class Bot extends TelegramLongPollingBot {
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(update.getMessage().getChatId().toString());
         chat_id = update.getMessage().getChatId().toString();
-        nameUser = update.getMessage().getFrom().getUserName();
+        String nameUser = update.getMessage().getFrom().getUserName();
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
+        database.create();
+        Location location = new Location();
+        database.add(chat_id, nameUser, location.toString());
         if (this.gameMode && message.matches("\\d+")) {
             sendMessage.setText(this.game.Logic(message));
-        }
-        else {
+        } else {
             sendMessage.setText(messageParser(message));
         }
         try {
@@ -63,7 +65,7 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    public String messageParser(String message) {
+    String messageParser(String message) {
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow keyboardRowFirstRow = new KeyboardRow();
         KeyboardRow keyboardRowSecondRow = new KeyboardRow();
@@ -82,12 +84,6 @@ public class Bot extends TelegramLongPollingBot {
             keyboard.add(keyboardRowFirstRow);
             keyboard.add(keyboardRowSecondRow);
             replyKeyboardMarkup.setKeyboard(keyboard);
-            if (message.equals("/start")) {
-                login.create();
-                Location location = new Location();
-                login.add(chat_id, nameUser, location.toString());
-                return helpMessage;
-            }
             return "Select necessary point";
         }
 
@@ -106,7 +102,7 @@ public class Bot extends TelegramLongPollingBot {
         }
 
         if (message.equals("Change location")) {
-            login.change(location, chat_id);
+            database.change(location, chat_id);
             return "Changed";
         }
 
@@ -130,7 +126,7 @@ public class Bot extends TelegramLongPollingBot {
             String lon = "";
             int offsetLon = 10;
             int offsetLat = 9;
-            String loc = login.get(chat_id);
+            String loc = database.get(chat_id);
             Pattern pattern1 = Pattern.compile("(longitude=)(\\d*\\.\\d*)");
             Matcher matcher1 = pattern1.matcher(loc);
             while (matcher1.find()) {
@@ -145,8 +141,7 @@ public class Bot extends TelegramLongPollingBot {
             }
             if (StringUtils.isBlank(lat) || StringUtils.isBlank(lon)) {
                 return "You should change your location in settings before it.";
-            }
-            else {
+            } else {
                 String appid = "&APPID=" + this.appid;
                 String s = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + appid;
                 try {
@@ -166,8 +161,7 @@ public class Bot extends TelegramLongPollingBot {
             String city = message.substring(offsetCity);
             if (city.equals("")) {
                 return "Your should write \"/city YOURCITY\"";
-            }
-            else {
+            } else {
                 Weather weather = new Weather();
                 String appid = "&APPID=" + this.appid;
                 String s = "http://api.openweathermap.org/data/2.5/weather?q=" + city + appid;
