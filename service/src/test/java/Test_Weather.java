@@ -32,12 +32,12 @@ public class Test_Weather {
         String[] args = new String[] {"abc:\"def\"", "abc:def", "abc:\"def", "abc:def\""};
         String[] actual = new String[4];
         for (int i = 0; i < args.length; i++) {
-            actual[i] = weather.parser(args[i]);
+            actual[i] = weather.weatherParser(args[i]);
         }
         for (String element : actual) {
             Assert.assertEquals(expected, element);
         }
-        Assert.assertEquals("There is bad data", weather.parser(""));
+        Assert.assertEquals("There is bad data", weather.weatherParser(""));
     }
 
     @Test
