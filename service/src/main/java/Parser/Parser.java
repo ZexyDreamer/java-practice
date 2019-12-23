@@ -1,11 +1,24 @@
 package Parser;
 
-import Interfaces.IParser;
-
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Properties;
 
-public class Parser implements IParser {
+public class Parser {
     public static Properties parser() {
-        return IParser.parser();
+        ClassLoader classLoader = Parser.class.getClassLoader();
+        URL resource = classLoader.getResource(".properties");
+        if (resource == null) {
+            throw new IllegalArgumentException("file is not found!");
+        }
+        InputStream fis;
+        Properties property = new Properties();
+        try {
+            fis = resource.openStream();
+            property.load(fis);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return property;
     }
 }

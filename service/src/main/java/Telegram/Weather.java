@@ -23,11 +23,11 @@ public class Weather implements IWeather {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String input;
-        StringBuilder html = new StringBuilder();
         if (in == null){
             return "There is null site";
         }
+        String input;
+        StringBuilder html = new StringBuilder();
         while((input = in.readLine()) != null) {
             html.append(input);
         }
@@ -50,8 +50,8 @@ public class Weather implements IWeather {
                 temperature = datum;
             }
         }
-        weather = parser(weather);
-        temperature = parser(temperature);
+        weather = weatherParser(weather);
+        temperature = weatherParser(temperature);
         int temp;
         try {
             temp = (int) Math.round(Double.parseDouble(temperature) + absoluteZero);
@@ -61,7 +61,7 @@ public class Weather implements IWeather {
         return "Weather is " + weather + " and temperature is " + temp;
     }
 
-    public String parser(String s) {
+    public String weatherParser(String s) {
         String[] data = s.split(":");
         String result;
         try {
