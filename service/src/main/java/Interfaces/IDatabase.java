@@ -11,6 +11,4 @@ public interface IDatabase {
     void add(String id, String name, String city);
     void change(Location newLocation, String id);
     String get(String id);
-
-
 }
