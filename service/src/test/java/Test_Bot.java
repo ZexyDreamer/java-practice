@@ -2,11 +2,11 @@ import Telegram.Bot;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.sql.SQLException;
+import java.io.IOException;
 
 public class Test_Bot {
     @Test
-    public void testGetBotUsername() throws SQLException {
+    public void testGetBotUsername() {
         String expected = "BotHelper";
         Bot bot = new Bot();
         String actual = bot.getBotUsername();
@@ -14,7 +14,7 @@ public class Test_Bot {
     }
 
     @Test
-    public void testMessageParser() throws SQLException {
+    public void testMessageParser() throws IOException {
         String[] expected = new String[] {"It's help", "abc"};
         String[] args = new String[] {"/help", "abc"};
         String[] actual = new String[expected.length];

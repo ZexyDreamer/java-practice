@@ -7,8 +7,8 @@ import java.util.Random;
 
 class Game implements IGame {
 
-    final ArrayList<Integer> number = new ArrayList<>();
-    int bulls = 0;
+    private final ArrayList<Integer> number = new ArrayList<>();
+    private int bulls = 0;
 
 
     Game() {
@@ -18,7 +18,7 @@ class Game implements IGame {
         while (i < 4) {
             digit = random.nextInt(10);
             if (!this.number.contains(digit)) {
-                this.number.set(i, digit);
+                this.number.add(digit);
                 i++;
             }
         }
@@ -57,7 +57,7 @@ class Game implements IGame {
         return result;
     }
 
-    Boolean checkNumber(String number) {
+    private Boolean checkNumber(String number) {
         char[] chars = number.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             for (int j = i + 1; j < chars.length - 1; j++) {

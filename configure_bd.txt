@@ -1,7 +1,6 @@
 Table name: users:
 1 column: name - id, type - int(30), Unique, Primary key
-2 column: name - name, type - char(30)
-3 column: name - city, type - char(100)
+2 column: name - city, type - char(100)
 
 
 SQL Script:
@@ -9,9 +8,7 @@ SQL Script:
 create table users
 (
 	id int(30) null,
-	name char(30) null,
 	city char(100) null,
-	column_4 int null
 );
 
 create unique index users_id_uindex

@@ -1,6 +1,9 @@
 service/src/main/resources/.properties:
 token: telegram-bot token
 appid: appid from openweather.com
+username: SQL username
+password: SQL password
+connectionURL: URL for SQL Database
 ============================================================================
 Procfile:
 web: java -jar [Name of .jar file].jar
