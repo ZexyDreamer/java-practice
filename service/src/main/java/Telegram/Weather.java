@@ -10,6 +10,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Weather implements IWeather {
+    final double absoluteZero = -273.15;
+
     public String getWeather(String site) throws IOException {
         URL url;
         try {
@@ -39,7 +41,6 @@ public class Weather implements IWeather {
         if (StringUtils.isBlank(text)) {
             return "There is no text";
         }
-        double absoluteZero = -273.15;
         String[] data = text.split(",");
         String weather = "";
         String temperature = "";
@@ -54,7 +55,7 @@ public class Weather implements IWeather {
         temperature = weatherParser(temperature);
         int temp;
         try {
-            temp = (int) Math.round(Double.parseDouble(temperature) + absoluteZero);
+            temp = (int) Math.round(Double.parseDouble(temperature) + this.absoluteZero);
         } catch (Exception e) {
             return "There is bad data";
         }
